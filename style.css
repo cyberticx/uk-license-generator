@@ -1,110 +1,145 @@
-/* Basic reset and layout */
-:root{
-  --card-w: 420px;
-  --bg: #f0f0f0;
-  --muted: #777;
-  --primary:#007bff;
-  --accent:#6c757d;
+body {
+    font-family: sans-serif;
+    display: flex; /* Use flexbox to center the content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Take full viewport height */
+    margin: 0;
+    background: #f0f0f0; /* Light background as in the image */
 }
 
-*{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg)}
-
-.page{
-  min-height:100vh;
-  display:flex;
-  gap:20px;
-  padding:40px 20px;
-  justify-content:center;
-  align-items:flex-start;
-  flex-wrap:wrap;
+.container {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 30px;
+    width: 400px; /* Adjust width as needed */
+    text-align: center; /* Center text inside the container */
 }
 
-/* Cards */
-.card{
-  background:#fff;
-  border-radius:8px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  padding:18px;
-  border:1px solid #e6e6e6;
+h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 24px;
 }
 
-.form-card{
-  width:100%;
-  max-width:var(--card-w);
+.form-group {
+    margin-bottom: 15px; /* Spacing between input groups */
+    text-align: left; /* Align labels/inputs to the left within their group */
 }
 
-.bulk-card{
-  width:100%;
-  max-width:360px;
+.form-group label {
+    display: block; /* Make labels take full width */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
 }
 
-/* Labels + inputs */
-label{display:block; font-weight:600; margin-top:12px; color:#222; font-size:14px}
-input[type="text"], input[type="date"], input[type="number"], select{
-  width:100%;
-  padding:10px 12px;
-  margin-top:6px;
-  border-radius:4px;
-  border:1px solid #d6d6d6;
-  font-size:14px;
-  background:white;
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 16px;
 }
 
-/* Buttons row */
-.buttons{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
-  flex-wrap:wrap;
-}
-.buttons button, .bulk-controls button{
-  padding:10px 14px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:600;
-  color:white;
-}
-#generateBtn{background:var(--primary)}
-#randomizeBtn{background:var(--accent)}
-#copySingleBtn{background:#28a745}
-
-/* Bulk controls */
-.bulk-controls{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  margin-bottom:12px;
-}
-#bulkCount{width:72px}
-
-/* license list */
-.license-list{
-  background:#fafafa;
-  border:1px solid #eee;
-  border-radius:6px;
-  padding:10px;
-  max-height:420px;
-  overflow:auto;
-  font-family: 'Courier New', Courier, monospace;
-  font-size:14px;
-}
-.license-list ul{list-style:none; padding:0; margin:0}
-.license-list li{padding:6px 4px; border-bottom:1px dashed #eee}
-
-/* validate row */
-.validator-row{display:flex; gap:10px; align-items:center; margin-top:12px}
-#validateBtn{background:#343a40; color:white; padding:8px 10px; border-radius:6px}
-.validate-result{font-weight:700; color:var(--muted)}
-
-/* small screens: stack */
-@media (max-width:880px){
-  .page{padding:20px; align-items:flex-start}
-  .form-card, .bulk-card{max-width:100%}
+.buttons {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex; /* Use flexbox for buttons */
+    justify-content: space-around; /* Distribute buttons */
 }
 
-/* large screen: left aligned in center column */
-@media(min-width:1200px){
-  .page{align-items:flex-start}
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#generateBtn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+#generateBtn:hover {
+    background-color: #0056b3;
+}
+
+#randomizeBtn {
+    background-color: #6c757d; /* Grey */
+    color: white;
+}
+
+#randomizeBtn:hover {
+    background-color: #5a6268;
+}
+
+.output-field input[type="text"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee; /* Grey background for readonly field */
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background: #f0f0f0;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#licenseListContainer {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    max-height: 500px; /* Make it scrollable if the list gets too long */
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for the license numbers */
+}
+
+#licenseListContainer ul {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+#licenseListContainer li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee; /* Light separator between numbers */
+}
+
+#licenseListContainer li:last-child {
+    border-bottom: none; /* No border on the last item */
 }
