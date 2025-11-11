@@ -6,8 +6,10 @@
     <title>UK Licence Number Generator</title>
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="container"> <h2>UK Licence Number Generator</h2>
+    <div class="container">
+        <h2>UK Licence Number Generator</h2>
 
         <div class="form-group">
             <label for="firstName">First Name:</label>
@@ -30,7 +32,8 @@
 
         <div class="form-group">
             <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" value="2025-07-03" /> </div>
+            <input type="date" id="dob" />
+        </div>
 
         <div class="buttons">
             <button id="generateBtn">Generate</button>
@@ -40,27 +43,6 @@
         <div class="output-field">
             <input type="text" id="licenseNumberOutput" readonly placeholder="Generated Licence Number" />
         </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fictional UK Driving License Generator for DLP</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-    <h1>Fictional UK Driving Licenses for DLP Test</h1>
-
-    <button onclick="generateAndDisplayLicenses(50)">Generate 50 Licenses</button>
-    <button onclick="copyAllLicenses()">Copy All Licenses</button>
-
-    <div id="licenseListContainer">
-        <p>Click "Generate 50 Licenses" to populate the list.</p>
     </div>
 
     <script src="script.js"></script>
