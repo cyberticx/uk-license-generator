@@ -1,21 +1,26 @@
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
 body {
     font-family: sans-serif;
-    display: flex; /* Use flexbox to center the content */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Take full viewport height */
     margin: 0;
-    background: #f0f0f0; /* Light background as in the image */
+    padding: 20px;
+    background: #f0f0f0;
+    min-height: 100vh;
 }
 
+/* ============================================
+   FORM-BASED GENERATOR CONTAINER
+   ============================================ */
 .container {
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    width: 400px; /* Adjust width as needed */
-    text-align: center; /* Center text inside the container */
+    max-width: 400px;
+    margin: 0 auto 30px auto; /* Center horizontally and add bottom margin */
+    text-align: center;
 }
 
 h2 {
@@ -25,13 +30,23 @@ h2 {
     font-size: 24px;
 }
 
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
 .form-group {
-    margin-bottom: 15px; /* Spacing between input groups */
-    text-align: left; /* Align labels/inputs to the left within their group */
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .form-group label {
-    display: block; /* Make labels take full width */
+    display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
@@ -40,22 +55,27 @@ h2 {
 .form-group input[type="text"],
 .form-group input[type="date"],
 .form-group select {
-    width: calc(100% - 20px); /* Full width minus padding */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding in width */
+    box-sizing: border-box;
     font-size: 16px;
 }
 
+/* ============================================
+   BUTTONS
+   ============================================ */
 .buttons {
     margin-top: 25px;
     margin-bottom: 25px;
-    display: flex; /* Use flexbox for buttons */
-    justify-content: space-around; /* Distribute buttons */
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
 }
 
-.buttons button {
+.buttons button,
+button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -64,17 +84,19 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-#generateBtn {
-    background-color: #007bff; /* Blue */
+#generateBtn,
+button:not(#randomizeBtn) {
+    background-color: #007bff;
     color: white;
 }
 
-#generateBtn:hover {
+#generateBtn:hover,
+button:not(#randomizeBtn):hover {
     background-color: #0056b3;
 }
 
 #randomizeBtn {
-    background-color: #6c757d; /* Grey */
+    background-color: #6c757d;
     color: white;
 }
 
@@ -82,64 +104,86 @@ h2 {
     background-color: #5a6268;
 }
 
+/* ============================================
+   OUTPUT FIELD
+   ============================================ */
 .output-field input[type="text"] {
-    width: calc(100% - 20px); /* Full width minus padding */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #eee; /* Grey background for readonly field */
+    background-color: #eee;
     color: #333;
     font-weight: bold;
     text-align: center;
     box-sizing: border-box;
     font-size: 18px;
 }
-body {
-    font-family: sans-serif;
-    padding: 20px;
-    background: #f0f0f0;
-}
 
-h1 {
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
+/* ============================================
+   BULK LICENSE LIST CONTAINER
+   ============================================ */
 #licenseListContainer {
     background-color: white;
     border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 20px;
-    max-height: 500px; /* Make it scrollable if the list gets too long */
+    max-height: 500px;
     overflow-y: auto;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for the license numbers */
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #licenseListContainer ul {
-    list-style-type: none; /* Remove default bullets */
+    list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
 #licenseListContainer li {
-    padding: 5px 0;
-    border-bottom: 1px dashed #eee; /* Light separator between numbers */
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
 }
 
 #licenseListContainer li:last-child {
-    border-bottom: none; /* No border on the last item */
+    border-bottom: none;
+}
+
+/* ============================================
+   BULK GENERATOR SECTION
+   ============================================ */
+.bulk-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bulk-section .buttons {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    #licenseListContainer {
+        width: 90%;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+    
+    .buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
