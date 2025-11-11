@@ -1,72 +1,82 @@
+/* Global layout for all pages */
 body {
     font-family: sans-serif;
-    display: flex; /* Use flexbox to center the content */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Take full viewport height */
     margin: 0;
-    background: #f0f0f0; /* Light background as in the image */
+    padding: 15px;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
+/* Main card container */
 .container {
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 30px;
-    width: 400px; /* Adjust width as needed */
-    text-align: center; /* Center text inside the container */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    width: 100%;
+    max-width: 420px;    /* ✅ Mobile friendly */
+    box-sizing: border-box;
 }
 
-h2 {
-    color: #333;
+/* Heading */
+h2, h1 {
+    text-align: center;
     margin-top: 0;
     margin-bottom: 25px;
+    color: #333;
     font-size: 24px;
 }
 
+/* Form group */
 .form-group {
-    margin-bottom: 15px; /* Spacing between input groups */
-    text-align: left; /* Align labels/inputs to the left within their group */
+    margin-bottom: 15px;
 }
 
-.form-group label {
-    display: block; /* Make labels take full width */
-    margin-bottom: 5px;
+label {
+    display: block;
+    margin-bottom: 6px;
     font-weight: bold;
     color: #555;
 }
 
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group select {
-    width: calc(100% - 20px); /* Full width minus padding */
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding in width */
     font-size: 16px;
+    box-sizing: border-box;
 }
 
+/* Buttons container */
 .buttons {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    display: flex; /* Use flexbox for buttons */
-    justify-content: space-around; /* Distribute buttons */
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-.buttons button {
-    padding: 10px 20px;
+/* Buttons styling */
+.buttons button,
+button {
+    flex: 1;
+    padding: 12px 10px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
 #generateBtn {
-    background-color: #007bff; /* Blue */
-    color: white;
+    background-color: #007bff;
 }
 
 #generateBtn:hover {
@@ -74,72 +84,58 @@ h2 {
 }
 
 #randomizeBtn {
-    background-color: #6c757d; /* Grey */
-    color: white;
+    background-color: #6c757d;
 }
 
 #randomizeBtn:hover {
     background-color: #5a6268;
 }
 
-.output-field input[type="text"] {
-    width: calc(100% - 20px); /* Full width minus padding */
-    padding: 10px;
+/* Output box */
+.output-field input {
+    width: 100%;
+    padding: 12px;
+    background: #eee;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #eee; /* Grey background for readonly field */
-    color: #333;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
-    box-sizing: border-box;
-    font-size: 18px;
-}
-body {
-    font-family: sans-serif;
-    padding: 20px;
-    background: #f0f0f0;
 }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
+/* Bulk generator page */
 #licenseListContainer {
     background-color: white;
     border: 1px solid #ddd;
     padding: 20px;
-    max-height: 500px; /* Make it scrollable if the list gets too long */
+    max-height: 500px;
     overflow-y: auto;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for the license numbers */
+    font-family: "Courier New", monospace;
+    box-sizing: border-box;
 }
 
 #licenseListContainer ul {
-    list-style-type: none; /* Remove default bullets */
-    padding: 0;
+    list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 #licenseListContainer li {
     padding: 5px 0;
-    border-bottom: 1px dashed #eee; /* Light separator between numbers */
+    border-bottom: 1px dashed #eee;
 }
 
 #licenseListContainer li:last-child {
-    border-bottom: none; /* No border on the last item */
+    border-bottom: none;
+}
+
+/* ✅ MOBILE FIXES */
+@media (max-width: 480px) {
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
 }
