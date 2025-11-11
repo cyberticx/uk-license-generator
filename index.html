@@ -4,21 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UK Licence Number Generator</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            flex: 1;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output-field {
+            margin-top: 20px;
+        }
+        #licenseNumberOutput {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-align: center;
+        }
+        #licenseListContainer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .license-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <div class="container"> <h2>UK Licence Number Generator</h2>
-
+    <div class="container">
+        <h2>UK Licence Number Generator</h2>
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" />
         </div>
-
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" />
         </div>
-
         <div class="form-group">
             <label for="gender">Gender:</label>
             <select id="gender">
@@ -27,42 +99,141 @@
                 <option value="F">Female</option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" value="2025-07-03" /> </div>
-
+            <input type="date" id="dob" value="2000-07-03" />
+        </div>
         <div class="buttons">
             <button id="generateBtn">Generate</button>
             <button id="randomizeBtn">Randomize</button>
         </div>
-
         <div class="output-field">
             <input type="text" id="licenseNumberOutput" readonly placeholder="Generated Licence Number" />
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fictional UK Driving License Generator for DLP</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-    <h1>Fictional UK Driving Licenses for DLP Test</h1>
-
-    <button onclick="generateAndDisplayLicenses(50)">Generate 50 Licenses</button>
-    <button onclick="copyAllLicenses()">Copy All Licenses</button>
-
-    <div id="licenseListContainer">
-        <p>Click "Generate 50 Licenses" to populate the list.</p>
+    <div class="container">
+        <h2>Bulk License Generation for DLP Testing</h2>
+        <div class="buttons">
+            <button onclick="generateAndDisplayLicenses(50)">Generate 50 Licenses</button>
+            <button onclick="copyAllLicenses()">Copy All Licenses</button>
+        </div>
+        <div id="licenseListContainer">
+            <p>Click "Generate 50 Licenses" to populate the list.</p>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // UK Driving License generator logic
+        function generateUKLicense(firstName, lastName, gender, dob) {
+            const date = new Date(dob);
+            const year = date.getFullYear().toString().slice(-2);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            let day = String(date.getDate()).padStart(2, '0');
+            
+            // For females, add 50 to the day
+            if (gender === 'F') {
+                day = String(parseInt(day) + 50).padStart(2, '0');
+            }
+            
+            // Format surname (first 5 letters, padded with 9s)
+            const surnameCode = (lastName.toUpperCase() + '99999').slice(0, 5);
+            
+            // First initial
+            const initial = firstName.charAt(0).toUpperCase();
+            
+            // Random check digits and serial
+            const checkDigit = Math.floor(Math.random() * 10);
+            const serial = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+            const lastDigits = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+            
+            return `${surnameCode}${year}${month}${day}${checkDigit}${initial}${serial} ${lastDigits}`;
+        }
+
+        // Random name generator
+        const firstNames = ['James', 'John', 'Robert', 'Michael', 'William', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth'];
+        const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez'];
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function getRandomDate() {
+            const start = new Date(1950, 0, 1);
+            const end = new Date(2005, 11, 31);
+            return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        }
+
+        // Event listeners
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const gender = document.getElementById('gender').value;
+            const dob = document.getElementById('dob').value;
+
+            if (!firstName || !lastName || !gender || !dob) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const license = generateUKLicense(firstName, lastName, gender, dob);
+            document.getElementById('licenseNumberOutput').value = license;
+        });
+
+        document.getElementById('randomizeBtn').addEventListener('click', function() {
+            const firstName = getRandomElement(firstNames);
+            const lastName = getRandomElement(lastNames);
+            const gender = Math.random() > 0.5 ? 'M' : 'F';
+            const randomDate = getRandomDate();
+            const dob = randomDate.toISOString().split('T')[0];
+
+            document.getElementById('firstName').value = firstName;
+            document.getElementById('lastName').value = lastName;
+            document.getElementById('gender').value = gender;
+            document.getElementById('dob').value = dob;
+
+            const license = generateUKLicense(firstName, lastName, gender, dob);
+            document.getElementById('licenseNumberOutput').value = license;
+        });
+
+        // Bulk generation
+        function generateAndDisplayLicenses(count) {
+            const container = document.getElementById('licenseListContainer');
+            container.innerHTML = '';
+            
+            const licenses = [];
+            for (let i = 0; i < count; i++) {
+                const firstName = getRandomElement(firstNames);
+                const lastName = getRandomElement(lastNames);
+                const gender = Math.random() > 0.5 ? 'M' : 'F';
+                const randomDate = getRandomDate();
+                const dob = randomDate.toISOString().split('T')[0];
+                
+                const license = generateUKLicense(firstName, lastName, gender, dob);
+                licenses.push(license);
+                
+                const div = document.createElement('div');
+                div.className = 'license-item';
+                div.textContent = license;
+                container.appendChild(div);
+            }
+            
+            window.generatedLicenses = licenses;
+        }
+
+        function copyAllLicenses() {
+            if (!window.generatedLicenses || window.generatedLicenses.length === 0) {
+                alert('Please generate licenses first');
+                return;
+            }
+            
+            const text = window.generatedLicenses.join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                alert('All licenses copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy: ' + err);
+            });
+        }
+    </script>
 </body>
 </html>
