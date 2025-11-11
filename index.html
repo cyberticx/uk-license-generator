@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UK Licence Number Generator</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UK Licence Number Generator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <h2>UK Licence Number Generator</h2>
+  <main class="page">
+    <!-- Left: single custom generator -->
+    <section class="card form-card">
+      <h2>UK Licence Number Generator</h2>
 
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" />
-        </div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" placeholder="First name" />
 
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" />
-        </div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" placeholder="Last name" />
 
-        <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender">
-                <option value="">--Select--</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-        </div>
+      <label for="gender">Gender:</label>
+      <select id="gender">
+        <option value="">--Select--</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
 
-        <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" />
-        </div>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" />
 
-        <div class="buttons">
-            <button id="generateBtn">Generate</button>
-            <button id="randomizeBtn">Randomize</button>
-        </div>
+      <div class="buttons">
+        <button id="generateBtn">Generate</button>
+        <button id="randomizeBtn">Randomize</button>
+        <button id="copySingleBtn">Copy</button>
+      </div>
 
-        <div class="output-field">
-            <input type="text" id="licenseNumberOutput" readonly placeholder="Generated Licence Number" />
-        </div>
-    </div>
+      <label for="licenseNumberOutput">Generated Licence Number</label>
+      <input type="text" id="licenseNumberOutput" readonly placeholder="Generated Licence Number" />
 
-    <script src="script.js"></script>
+      <div class="validator-row">
+        <button id="validateBtn">Validate</button>
+        <span id="validateResult" class="validate-result"></span>
+      </div>
+    </section>
+
+    <!-- Right: bulk generator -->
+    <aside class="card bulk-card">
+      <h3>Bulk (fictional) generator</h3>
+      <p>Generate many fictional UK-style license numbers for DLP testing.</p>
+
+      <div class="bulk-controls">
+        <label for="bulkCount">Count</label>
+        <input id="bulkCount" type="number" min="1" max="500" value="50" />
+        <button id="generateBulkBtn">Generate</button>
+        <button id="copyAllBtn">Copy All</button>
+      </div>
+
+      <div id="licenseListContainer" class="license-list">
+        <p class="hint">Click "Generate" to produce licenses.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
