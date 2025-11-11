@@ -1,141 +1,110 @@
-/* Global layout for all pages */
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 15px;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    box-sizing: border-box;
+/* Basic reset and layout */
+:root{
+  --card-w: 420px;
+  --bg: #f0f0f0;
+  --muted: #777;
+  --primary:#007bff;
+  --accent:#6c757d;
 }
 
-/* Main card container */
-.container {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    width: 100%;
-    max-width: 420px;    /* ✅ Mobile friendly */
-    box-sizing: border-box;
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg)}
+
+.page{
+  min-height:100vh;
+  display:flex;
+  gap:20px;
+  padding:40px 20px;
+  justify-content:center;
+  align-items:flex-start;
+  flex-wrap:wrap;
 }
 
-/* Heading */
-h2, h1 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 25px;
-    color: #333;
-    font-size: 24px;
+/* Cards */
+.card{
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  padding:18px;
+  border:1px solid #e6e6e6;
 }
 
-/* Form group */
-.form-group {
-    margin-bottom: 15px;
+.form-card{
+  width:100%;
+  max-width:var(--card-w);
 }
 
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #555;
+.bulk-card{
+  width:100%;
+  max-width:360px;
 }
 
-input[type="text"],
-input[type="date"],
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
+/* Labels + inputs */
+label{display:block; font-weight:600; margin-top:12px; color:#222; font-size:14px}
+input[type="text"], input[type="date"], input[type="number"], select{
+  width:100%;
+  padding:10px 12px;
+  margin-top:6px;
+  border-radius:4px;
+  border:1px solid #d6d6d6;
+  font-size:14px;
+  background:white;
 }
 
-/* Buttons container */
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
+/* Buttons row */
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.buttons button, .bulk-controls button{
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+  color:white;
+}
+#generateBtn{background:var(--primary)}
+#randomizeBtn{background:var(--accent)}
+#copySingleBtn{background:#28a745}
+
+/* Bulk controls */
+.bulk-controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:12px;
+}
+#bulkCount{width:72px}
+
+/* license list */
+.license-list{
+  background:#fafafa;
+  border:1px solid #eee;
+  border-radius:6px;
+  padding:10px;
+  max-height:420px;
+  overflow:auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size:14px;
+}
+.license-list ul{list-style:none; padding:0; margin:0}
+.license-list li{padding:6px 4px; border-bottom:1px dashed #eee}
+
+/* validate row */
+.validator-row{display:flex; gap:10px; align-items:center; margin-top:12px}
+#validateBtn{background:#343a40; color:white; padding:8px 10px; border-radius:6px}
+.validate-result{font-weight:700; color:var(--muted)}
+
+/* small screens: stack */
+@media (max-width:880px){
+  .page{padding:20px; align-items:flex-start}
+  .form-card, .bulk-card{max-width:100%}
 }
 
-/* Buttons styling */
-.buttons button,
-button {
-    flex: 1;
-    padding: 12px 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-#generateBtn {
-    background-color: #007bff;
-}
-
-#generateBtn:hover {
-    background-color: #0056b3;
-}
-
-#randomizeBtn {
-    background-color: #6c757d;
-}
-
-#randomizeBtn:hover {
-    background-color: #5a6268;
-}
-
-/* Output box */
-.output-field input {
-    width: 100%;
-    padding: 12px;
-    background: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Bulk generator page */
-#licenseListContainer {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 20px;
-    max-height: 500px;
-    overflow-y: auto;
-    font-family: "Courier New", monospace;
-    box-sizing: border-box;
-}
-
-#licenseListContainer ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#licenseListContainer li {
-    padding: 5px 0;
-    border-bottom: 1px dashed #eee;
-}
-
-#licenseListContainer li:last-child {
-    border-bottom: none;
-}
-
-/* ✅ MOBILE FIXES */
-@media (max-width: 480px) {
-    h1, h2 {
-        font-size: 20px;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
+/* large screen: left aligned in center column */
+@media(min-width:1200px){
+  .page{align-items:flex-start}
 }
